@@ -1,0 +1,58 @@
+postgres=# \dt
+Did not find any relations.
+postgres=# CREATE TABLE students (
+    student_id SERIAL PRIMARY KEY,
+    name TEXT NOT NULL,
+    email TEXT UNIQUE NOT NULL,
+    faculty TEXT
+);
+CREATE TABLE
+postgres=# INSERT INTO students (name, email, faculty)
+VALUES
+('Alymbek', 'alymbek@example.com', 'COM-25'),
+('Timur',   'timur@example.com',   'COM-25'),
+('Beka',    'beka@example.com',    'COM-25');
+INSERT 0 3
+postgres=# SELECT * FROM students;
+ student_id |  name   |        email        | faculty 
+------------+---------+---------------------+---------
+          1 | Alymbek | alymbek@example.com | COM-25
+          2 | Timur   | timur@example.com   | COM-25
+          3 | Beka    | beka@example.com    | COM-25
+(3 rows)
+
+postgres=# SELECT name, email
+FROM students;
+  name   |        email        
+---------+---------------------
+ Alymbek | alymbek@example.com
+ Timur   | timur@example.com
+ Beka    | beka@example.com
+(3 rows)
+
+postgres=# SELECT name, email
+FROM students
+WHERE name = 'Timur';
+ name  |       email       
+-------+-------------------
+ Timur | timur@example.com
+(1 row)
+
+postgres=# SELECT name, email
+FROM students
+ORDER BY name ASC;
+  name   |        email        
+---------+---------------------
+ Alymbek | alymbek@example.com
+ Beka    | beka@example.com
+ Timur   | timur@example.com
+(3 rows)
+
+postgres=# SELECT name, email
+FROM students
+LIMIT 2;
+  name   |        email        
+---------+---------------------
+ Alymbek | alymbek@example.com
+ Timur   | timur@example.com
+(2 rows)
